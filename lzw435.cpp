@@ -119,8 +119,10 @@ int binaryString2Int(std::string p) {
    return code;
 }
 
-void binaryIODemo(std::vector<int> compressed) {
+void binaryIODemo(std::vector<int> compressed, std::string file) {
    //example for integer c; looking for a 9 bit code
+   std::string lzw=".lzw";
+
    int c = 69;
    int bits = 9; //length of the code
    std::string p = int2BinaryString(c, bits);
@@ -143,7 +145,7 @@ void binaryIODemo(std::vector<int> compressed) {
 
    //writing to file
    std::cout << "string 2 save : "<<bcode << "\n";
-   std::string fileName = "filename.lzw"; //this is for demo you should not hard code the final name.
+   std::string fileName = file+lzw; //this is for demo you should not hard code the final name.
    std::ofstream myfile;
    myfile.open(fileName.c_str(),  std::ios::binary);
 
@@ -216,7 +218,7 @@ int main(int argc, char *argv[]) {
         compress(characters,std::back_inserter(compressed));
         for(auto itr=compressed.begin(); itr !=compressed.end(); itr++)
               std::cout<<"\n"<<*itr;
-        binaryIODemo(compressed);
+        binaryIODemo(compressed,filename);
         textfile.close();
       }
 
